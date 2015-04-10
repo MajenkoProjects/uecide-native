@@ -1,6 +1,7 @@
 Source: native
 Section: cores
 Priority: optional
+XBSC-Family: native
 Maintainer: Matt Jenkins <matt@debian.majenko.co.uk>
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.5
@@ -22,7 +23,9 @@ Description: Native Compiler
 
 Package: 4d-armadillo-43t
 Architecture: all
+Depends: native-core
 Section: boards
+XBSC-Group: 4D Systems
 Description: Armadillo-43T
  The Armadillo-43T can be thought of as a Raspberry Pi with
  a built in 4.3" TFT screen.
