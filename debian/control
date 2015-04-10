@@ -1,0 +1,28 @@
+Source: native
+Section: cores
+Priority: optional
+Maintainer: Matt Jenkins <matt@debian.majenko.co.uk>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: 
+
+Package: native-core
+Architecture: all
+Section: cores
+Depends: native-compiler
+Description: Native core for Linux boards
+ Program boards such as the BeagleBone Black and Raspberry Pi
+ like an Arduino.
+
+Package: native-compiler
+Architecture: all
+Section: compilers
+Description: Native Compiler
+ The computer's natively installed GCC compiler.
+
+Package: 4d-armadillo-43t
+Architecture: all
+Section: boards
+Description: Armadillo-43T
+ The Armadillo-43T can be thought of as a Raspberry Pi with
+ a built in 4.3" TFT screen.
