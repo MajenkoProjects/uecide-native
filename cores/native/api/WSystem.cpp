@@ -8,13 +8,11 @@ void nativeCleanup() {
 }
 
 void intHandler(int sig) {
-    fprintf(stderr, "Exited on INT\r\n");
     nativeCleanup();
     exit(0);
 }
 
 void quitHandler(int sig) {
-    fprintf(stderr, "Exited on QUIT\r\n");
     nativeCleanup();
     exit(0);
 }

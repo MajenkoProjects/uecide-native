@@ -3,7 +3,8 @@ description=Native Core for Pi etc
 compiler=native
 
 core.path=api
-core.flags=-DF_CPU=${build.f_cpu}::-DARDUINO=${core.version}::-D${board}
+core.flags=-DF_CPU=${build.f_cpu}::-DARDUINO=${core.version}::-D${board}::--std=gnu++0x
+core.ldflags=-pthread
 core.header=Arduino.h
 core.version=106
 version=1.0.x
@@ -17,6 +18,7 @@ library.path=libraries
 examples.path=examples
 
 board=_UNKNOWN_BOARD_
+build.files=board_config.cpp
 
 sketch.upload=terminal
 bootloader.upload=

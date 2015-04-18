@@ -28,18 +28,123 @@
 #include "wiring_private.h"
 #include "pins_arduino.h"
 
-void pinMode(uint8_t pin, uint8_t mode)
-{
+#include <pthread.h>
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <fcntl.h>
+
+static const char *gpio_root = "/sys/class/gpio";
+
+static void exportGpio(int gpio) {
+	char temp[100];
+	sprintf(temp, "%s/export", gpio_root);
+	int fd = open(temp, O_WRONLY);
+	if (fd < 0) {
+		return;
+	}
+	sprintf(temp, "%d\n", gpio);
+	write(fd, temp, strlen(temp));
+	close(fd);
 }
 
-static void turnOffPWM(uint8_t timer)
-{
+boolean isGpioExported(int gpio) {
+	char temp[100];
+	struct stat sb;
+	sprintf(temp, "%s/gpio%d", gpio_root, gpio);
+
+	if (stat(temp, &sb) == 0) {
+		return true;
+	}
+	return false;
 }
 
-void digitalWrite(uint8_t pin, uint8_t val)
-{
+static int openGpio(int gpio) {
+	char temp[100];
+	sprintf(temp, "%s/gpio%d/value", gpio_root, gpio);
+	return open(temp, O_RDWR);
 }
 
-int digitalRead(uint8_t pin)
-{
+void pinMode(uint8_t pin, uint8_t mode) {
+	if (pin >= NUM_GPIO) {
+		return;
+	}
+	struct _pin *p = &(_pins_gpio[pin]);
+
+	if (!isGpioExported(p->gpio)) {
+		exportGpio(p->gpio);
+	}
+
+	if (p->thread != -1) {
+		p->data = -1;
+		pthread_join(p->thread, NULL);
+		p->thread = -1;
+	}
+
+	char temp[100];
+	sprintf(temp, "%s/gpio%d/direction", gpio_root, p->gpio);
+	int fd = open(temp, O_RDWR);
+	if (fd < 0) {
+		return;
+	}
+
+	switch (mode) {
+		case INPUT_PULLUP:
+		case INPUT:
+			write(fd, "in\n", 3);
+			break;
+		case OUTPUT:
+			write(fd, "out\n", 4);
+			break;
+	}
+	close(fd);
+}
+
+void digitalWrite(uint8_t pin, uint8_t val) {
+	if (pin >= NUM_GPIO) {
+		return;
+	}
+	struct _pin *p = &(_pins_gpio[pin]);
+	if (p->thread != -1) {
+		p->data = -1;
+		pthread_join(p->thread, NULL);
+		p->thread = -1;
+	}
+	char temp[100];
+	sprintf(temp, "%s/gpio%d/value", gpio_root, p->gpio);
+	int fd = open(temp, O_WRONLY);
+	if (fd < 0) {
+		return;
+	}
+	write(fd, val ? "1" : "0", 1);
+	close(fd);
+}
+
+int digitalRead(uint8_t pin) {
+	if (pin >= NUM_GPIO) {
+		return -2;
+	}
+	struct _pin *p = &(_pins_gpio[pin]);
+	if (p->thread != -1) {
+		p->data = -1;
+		pthread_join(p->thread, NULL);
+		p->thread = -1;
+	}
+	char temp[100];
+
+	sprintf(temp, "%s/gpio%d/value", gpio_root, p->gpio);
+	int fd = open(temp, O_RDWR);
+	if (fd < 0) {
+		return -1;
+	}
+
+	char c;
+	read(fd, &c, 1);
+	close(fd);
+	if (c == '1') {
+		return 1;
+	}
+	return 0;
 }

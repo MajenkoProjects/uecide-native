@@ -24,8 +24,12 @@
   $Id: wiring.c 248 2007-02-03 15:36:30Z mellis $
 */
 
+#include <pthread.h>
+
 #include "wiring_private.h"
 #include "pins_arduino.h"
+
+static const char *gpio_root = "/sys/class/gpio";
 
 uint8_t analog_reference = DEFAULT;
 
@@ -39,7 +43,48 @@ int analogRead(uint8_t pin)
 	return 0;
 }
 
+const int _pwm_mul = 3;
+
+void *pwmThreadHandler(void *pinptr) {
+	char temp[100];
+	int pin = (int)pinptr;
+	if (pin >= NUM_GPIO) {
+		return NULL;
+	}
+	struct _pin *p = &_pins_gpio[pin];
+	sprintf(temp, "%s/gpio%d/value", gpio_root, p->gpio);
+	int fd = open(temp, O_RDWR);
+	if (fd < 0) {
+		return NULL;
+	}
+	while (p->data >= 0) {
+		int val = p->data;
+		if (val <= 0) {
+			write(fd, "0\n", 2);
+			usleep(255 * _pwm_mul);
+			continue;
+		}
+		if (val >= 255) {
+			write(fd, "1\n", 2);
+			usleep(255 * _pwm_mul);
+			continue;
+		}
+		write(fd, "1\n", 2);
+		usleep(val * _pwm_mul);
+		write(fd, "0\n", 2);
+		usleep((255 * _pwm_mul) - (val * _pwm_mul));
+	}
+	close(fd);
+	return NULL;
+}
+
 void analogWrite(uint8_t pin, int val)
 {
+	pinMode(pin, OUTPUT);
+	struct _pin *p = &_pins_gpio[pin];
+	p->data = val;
+	if (p->thread == -1) {
+		pthread_create(&(p->thread), NULL, &pwmThreadHandler, (void *)pin);
+	}
 }
 

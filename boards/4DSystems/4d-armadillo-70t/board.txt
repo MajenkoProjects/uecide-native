@@ -1,0 +1,24 @@
+variant=4d-armadillo-70t
+description=Armadillo-70T
+group=4D Systems
+platform=native
+board=_BOARD_ARMADILLO_70T_
+board.flags=
+bootloader=
+ccflags=ffff
+build.core=native
+build.variant=4d-armadillo-70t
+family=native
+version=0.1
+revision=7
+core=native
+name=4d-armadillo-70t
+
+icon.256=icons/4d-256.png
+icon.128=icons/4d-128.png
+icon.64=icons/4d-64.png
+icon.48=icons/4d-48.png
+icon.32=icons/4d-32.png
+icon.22=icons/4d-22.png
+icon.16=icons/4d-16.png
+icon.8=icons/4d-8.png
