@@ -23,6 +23,8 @@
 #ifndef HardwareSerial_h
 #define HardwareSerial_h
 
+#include "pins_arduino.h"
+
 #include <inttypes.h>
 
 #include "Stream.h"

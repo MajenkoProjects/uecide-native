@@ -47,13 +47,13 @@ const int _pwm_mul = 3;
 
 void *pwmThreadHandler(void *pinptr) {
 	char temp[100];
-	int pin = (int)pinptr;
+	int pin = *(int *)pinptr;
 	if (pin >= NUM_GPIO) {
 		return NULL;
 	}
 	struct _pin *p = &_pins_gpio[pin];
     if (p->gpio == __NOT_A_PIN) {
-        return;
+        return NULL;
     }
 
 	sprintf(temp, "%s/gpio%d/value", gpio_root, p->gpio);
@@ -95,7 +95,7 @@ void analogWrite(uint8_t pin, int val)
 
 	p->data = val;
 	if (p->thread == -1) {
-		pthread_create(&(p->thread), NULL, &pwmThreadHandler, (void *)pin);
+		pthread_create(&(p->thread), NULL, &pwmThreadHandler, (void *)&pin);
 	}
 }
 

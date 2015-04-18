@@ -4,7 +4,7 @@ compiler=native
 
 core.path=api
 core.flags=-DF_CPU=${build.f_cpu}::-DARDUINO=${core.version}::-D${board}::--std=gnu++0x
-core.ldflags=-pthread
+core.ldflags=-pthread::-lSDL
 core.header=Arduino.h
 core.version=106
 version=1.0.x

@@ -132,11 +132,11 @@ void digitalWrite(uint8_t pin, uint8_t val) {
 
 int digitalRead(uint8_t pin) {
 	if (pin >= NUM_GPIO) {
-		return -2;
+		return 0;
 	}
 	struct _pin *p = &(_pins_gpio[pin]);
     if (p->gpio == __NOT_A_PIN) {
-        return;
+        return 0;
     }
 
 	if (p->thread != -1) {
@@ -149,7 +149,7 @@ int digitalRead(uint8_t pin) {
 	sprintf(temp, "%s/gpio%d/value", gpio_root, p->gpio);
 	int fd = open(temp, O_RDWR);
 	if (fd < 0) {
-		return -1;
+		return 0;
 	}
 
 	char c;
