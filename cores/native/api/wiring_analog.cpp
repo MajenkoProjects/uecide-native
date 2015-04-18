@@ -52,6 +52,10 @@ void *pwmThreadHandler(void *pinptr) {
 		return NULL;
 	}
 	struct _pin *p = &_pins_gpio[pin];
+    if (p->gpio == __NOT_A_PIN) {
+        return;
+    }
+
 	sprintf(temp, "%s/gpio%d/value", gpio_root, p->gpio);
 	int fd = open(temp, O_RDWR);
 	if (fd < 0) {
@@ -80,8 +84,15 @@ void *pwmThreadHandler(void *pinptr) {
 
 void analogWrite(uint8_t pin, int val)
 {
+    if (pin >= NUM_GPIO) {
+        return;
+    }
 	pinMode(pin, OUTPUT);
 	struct _pin *p = &_pins_gpio[pin];
+    if (p->gpio == __NOT_A_PIN) {
+        return;
+    }
+
 	p->data = val;
 	if (p->thread == -1) {
 		pthread_create(&(p->thread), NULL, &pwmThreadHandler, (void *)pin);

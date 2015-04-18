@@ -3,6 +3,8 @@
 
 #include <pthread.h>
 
+#define __NOT_A_PIN -1
+
 struct _pin {
 	int gpio;
 	pthread_t thread;

@@ -5,8 +5,8 @@
 
 extern struct _pin _pins_gpio[];
 
-#define __SERIAL_0 "/dev/ttyAMA0"
+#define __SERIAL_0 "/dev/ttyAMA0";
 
-#define NUM_GPIO 14
+#define NUM_GPIO 40
 
 #endif

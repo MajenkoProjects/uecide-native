@@ -86,7 +86,30 @@ class HardwareSerial : public Stream
 #define SERIAL_7O2 0x3C
 #define SERIAL_8O2 0x3E
 
+#ifdef __SERIAL_0
 extern HardwareSerial Serial;
+#endif
+
+#ifdef __SERIAL_1
+extern HardwareSerial Serial1;
+#endif
+
+#ifdef __SERIAL_2
+extern HardwareSerial Serial2;
+#endif
+
+#ifdef __SERIAL_3
+extern HardwareSerial Serial3;
+#endif
+
+#ifdef __SERIAL_4
+extern HardwareSerial Serial4;
+#endif
+
+#ifdef __SERIAL_5
+extern HardwareSerial Serial5;
+#endif
+
 extern HardwareSerial Console;
 
 extern void serialEventRun(void) __attribute__((weak));

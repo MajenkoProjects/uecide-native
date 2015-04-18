@@ -73,6 +73,10 @@ void pinMode(uint8_t pin, uint8_t mode) {
 	}
 	struct _pin *p = &(_pins_gpio[pin]);
 
+    if (p->gpio == __NOT_A_PIN) {
+        return;
+    }
+
 	if (!isGpioExported(p->gpio)) {
 		exportGpio(p->gpio);
 	}
@@ -107,6 +111,10 @@ void digitalWrite(uint8_t pin, uint8_t val) {
 		return;
 	}
 	struct _pin *p = &(_pins_gpio[pin]);
+    if (p->gpio == __NOT_A_PIN) {
+        return;
+    }
+
 	if (p->thread != -1) {
 		p->data = -1;
 		pthread_join(p->thread, NULL);
@@ -127,6 +135,10 @@ int digitalRead(uint8_t pin) {
 		return -2;
 	}
 	struct _pin *p = &(_pins_gpio[pin]);
+    if (p->gpio == __NOT_A_PIN) {
+        return;
+    }
+
 	if (p->thread != -1) {
 		p->data = -1;
 		pthread_join(p->thread, NULL);

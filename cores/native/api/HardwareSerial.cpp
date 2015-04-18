@@ -36,7 +36,30 @@
 
 #define    BOTHER 0010000
 
-HardwareSerial Serial("/dev/ttyAMA0");
+#ifdef __SERIAL_0
+HardwareSerial Serial(__SERIAL_0);
+#endif
+
+#ifdef __SERIAL_1
+HardwareSerial Serial1(__SERIAL_1);
+#endif
+
+#ifdef __SERIAL_2
+HardwareSerial Serial2(__SERIAL_2);
+#endif
+
+#ifdef __SERIAL_3
+HardwareSerial Serial3(__SERIAL_3);
+#endif
+
+#ifdef __SERIAL_4
+HardwareSerial Serial4(__SERIAL_4);
+#endif
+
+#ifdef __SERIAL_5
+HardwareSerial Serial5(__SERIAL_5);
+#endif
+
 HardwareSerial Console("/dev/tty");
 
 #include "HardwareSerial.h"
