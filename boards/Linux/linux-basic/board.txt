@@ -1,0 +1,20 @@
+variant=linux-basic
+description=Basic Linux Computer
+group=Linux
+platform=native
+board=_BOARD_LINUX_BASIC_
+board.flags=
+build.core=native
+build.variant=linux-basic
+family=native
+core=native
+name=linux-basic
+
+icon.256=icons/tux-256.png
+icon.128=icons/tux-128.png
+icon.64=icons/tux-64.png
+icon.48=icons/tux-48.png
+icon.32=icons/tux-32.png
+icon.22=icons/tux-22.png
+icon.16=icons/tux-16.png
+icon.8=icons/tux-8.png
