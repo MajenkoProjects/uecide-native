@@ -46,3 +46,11 @@ Section: boards
 XBSC-Group: Raspberry
 Description: Raspberry Pi 2
  The new, quad-core Raspberry Pi
+
+Package: linux-basic
+Architecture: all
+Depends: native-core
+Section: boards
+XBSC-Group: Linux
+Description: Basic Linux Computer
+ Create programs for any Basic Linux computer.
