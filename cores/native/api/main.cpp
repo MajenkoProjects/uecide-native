@@ -19,14 +19,17 @@
 
 #include <Arduino.h>
 
+#include <CMD.h>
 
 // Weak empty variant initialization function.
 // May be redefined by variant files.
 void initVariant() __attribute__((weak));
 void initVariant() { }
 
-int main(void)
+int main(int argc, char **argv)
 {
+	CMD.setArguments(argc, argv);
+
 	init();
 
 	initVariant();
