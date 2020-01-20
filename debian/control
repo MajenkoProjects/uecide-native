@@ -1,5 +1,5 @@
 Source: native
-Section: cores
+Section: main
 Priority: optional
 XBSC-Family: native
 Maintainer: Matt Jenkins <matt@debian.majenko.co.uk>
@@ -9,25 +9,25 @@ Homepage:
 
 Package: native-core
 Architecture: all
-Section: cores
 Depends: native-compiler
-XBSC-Group: Native
+XBSC-Group: Cores
+XBSC-SubGroup: Native
 Description: Native core for Linux boards
  Program boards such as the BeagleBone Black and Raspberry Pi
  like an Arduino.
 
 Package: native-compiler
 Architecture: all
-Section: compilers
-XBSC-Group: Native
+XBSC-Group: Compilers
+XBSC-SubGroup: Native
 Description: Native Compiler
  The computer's natively installed GCC compiler.
 
 Package: 4d-armadillo-43t
 Architecture: all
 Depends: native-core
-Section: boards
-XBSC-Group: 4D Systems
+XBSC-Group: Boards
+XBSC-SubGroup: 4D Systems
 Description: Armadillo-43T
  The Armadillo-43T can be thought of as a Raspberry Pi with
  a built in 4.3" TFT screen.
@@ -35,8 +35,8 @@ Description: Armadillo-43T
 Package: 4d-armadillo-70t
 Architecture: all
 Depends: native-core
-Section: boards
-XBSC-Group: 4D Systems
+XBSC-Group: Boards
+XBSC-SubGroup: 4D Systems
 Description: Armadillo-70T
  The Armadillo-70T can be thought of as a Raspberry Pi with
  a built in 7" TFT screen.
@@ -44,15 +44,15 @@ Description: Armadillo-70T
 Package: raspberry-pi2
 Architecture: all
 Depends: native-core
-Section: boards
-XBSC-Group: Raspberry
+XBSC-Group: Boards
+XBSC-SubGroup: Raspberry
 Description: Raspberry Pi 2
  The new, quad-core Raspberry Pi
 
 Package: linux-basic
 Architecture: all
 Depends: native-core
-Section: boards
-XBSC-Group: Linux
+XBSC-Group: Boards
+XBSC-SubGroup: Linux
 Description: Basic Linux Computer
  Create programs for any Basic Linux computer.
