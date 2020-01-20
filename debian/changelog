@@ -1,5 +1,72 @@
-native (1.0.0) unstable; urgency=low
+native (0.1.1) uecide; urgency=low
 
-  * Initial Release.
+  * Moved things into Native group
 
- -- Matt Jenkins <matt@debian.majenko.co.uk>  Fri, 10 Apr 2015 19:40:09 +0100
+ -- Matt Jenkins <matt@majenko.co.uk>  Sat, 30 May 2015 19:40:37 +0100
+
+native (0.1.0) uecide; urgency=low
+
+  * Added PTY device
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Sat, 30 May 2015 19:39:43 +0100
+
+native (0.0.9) uecide; urgency=low
+
+  * Added command line parameter handling
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Tue, 21 Apr 2015 00:00:42 +0100
+
+native (0.0.8) uecide; urgency=low
+
+  * Fixed typo in linux basic install path
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Sun, 19 Apr 2015 11:19:49 +0100
+
+native (0.0.7) uecide; urgency=low
+
+  * Added linux basic control files
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Sun, 19 Apr 2015 11:18:12 +0100
+
+native (0.0.6) uecide; urgency=low
+
+  * Added basic linux computer and board icons
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Sun, 19 Apr 2015 10:55:30 +0100
+
+native (0.0.5) uecide; urgency=low
+
+  * Fixed some cross-platform issues
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Sat, 18 Apr 2015 22:18:55 +0100
+
+native (0.0.4) uecide; urgency=low
+
+  * Added pi2 to control file
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Sat, 18 Apr 2015 18:57:41 +0100
+
+native (0.0.3) uecide; urgency=low
+
+  * Added pi2 and multiple serial support
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Sat, 18 Apr 2015 18:28:44 +0100
+
+native (0.0.2) uecide; urgency=low
+
+  * Added PWM and Armadillo 70T support
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Sat, 18 Apr 2015 17:05:40 +0100
+
+native (0.0.1) uecide; urgency=low
+
+  * Fixed grouping
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Fri, 10 Apr 2015 20:01:33 +0100
+
+native (0.0.0) uecide; urgency=low
+
+  * Initial import
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Fri, 10 Apr 2015 19:47:19 +0100
+
