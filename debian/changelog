@@ -1,3 +1,15 @@
+native (0.1.3) uecide; urgency=low
+
+  * Fixed sections and groups
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Mon, 20 Jan 2020 09:58:38 +0000
+
+native (0.1.2) uecide; urgency=low
+
+  * Fixed pthread types
+
+ -- Matt Jenkins <matt@majenko.co.uk>  Mon, 20 Jan 2020 09:55:51 +0000
+
 native (0.1.1) uecide; urgency=low
 
   * Moved things into Native group

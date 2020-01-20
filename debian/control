@@ -9,7 +9,7 @@ Homepage:
 
 Package: native-core
 Architecture: all
-Depends: native-compiler
+Depends: native-compiler, xterm
 XBSC-Group: Cores
 XBSC-SubGroup: Native
 Description: Native core for Linux boards
@@ -56,3 +56,4 @@ XBSC-Group: Boards
 XBSC-SubGroup: Linux
 Description: Basic Linux Computer
  Create programs for any Basic Linux computer.
+

@@ -2,7 +2,7 @@
 
 my $package = "unknown";
 
-my $maj = 0;
+my $maj = 1;
 my $min = 0;
 my $ver = 0;
 
