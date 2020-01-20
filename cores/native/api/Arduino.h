@@ -28,6 +28,8 @@
 
 #include "binary.h"
 
+#include <hal_eeprom.h>
+
 #ifdef __cplusplus
 extern "C"{
 #endif
